@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickOrderPagamento.Adapters.Driving.Api", "pagamento\QuickOrderPagamento.Adapters.Driving.Api.csproj", "{7E9F7232-1645-4E92-B3B4-3002577359B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2048AEF6-5127-4AC4-8BD7-B351F680D386}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adapters", "Adapters", "{A01DC5C3-4E00-49E7-93FF-6742DBB47659}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{41DAE43A-89C3-4A1E-978E-CF1799D2883D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickOrderPagamento.Core.Domain", "QuickOrderPagamento.Core.Domain\QuickOrderPagamento.Core.Domain.csproj", "{8CF65E86-A01F-411F-8B79-1F91D2DEA107}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickOrderPagamento.Core.Application", "QuickOrderPagamento.Core.Application\QuickOrderPagamento.Core.Application.csproj", "{CDC25475-FB22-4FC7-ACF9-90CB15636C1A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Driven", "Driven", "{066B2820-5349-4930-B122-AD6C580F98B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Driving", "Driving", "{863F3054-39B2-45DD-9EB2-903258A72CA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickOrderPagamento.Adapters.Driven.MercadoPago", "QuickOrderPagamento.Adapters.Driven.MercadoPago\QuickOrderPagamento.Adapters.Driven.MercadoPago.csproj", "{C97F4F80-A676-4783-83AA-7033BF90804F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickOrderPagamento.Core.IoC", "QuickOrderPagamento.Core.IoC\QuickOrderPagamento.Core.IoC.csproj", "{230088EE-0B53-480A-AC8B-65542458EF90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickOrderPagamento.Adapters.Driven.MongoDB", "QuickOrderPagamento.Adapters.Driven.MongoDB\QuickOrderPagamento.Adapters.Driven.MongoDB.csproj", "{54B4C9EC-8457-4B61-95D1-956EBFA6BFFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E9F7232-1645-4E92-B3B4-3002577359B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E9F7232-1645-4E92-B3B4-3002577359B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E9F7232-1645-4E92-B3B4-3002577359B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E9F7232-1645-4E92-B3B4-3002577359B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CF65E86-A01F-411F-8B79-1F91D2DEA107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CF65E86-A01F-411F-8B79-1F91D2DEA107}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CF65E86-A01F-411F-8B79-1F91D2DEA107}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CF65E86-A01F-411F-8B79-1F91D2DEA107}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDC25475-FB22-4FC7-ACF9-90CB15636C1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC25475-FB22-4FC7-ACF9-90CB15636C1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC25475-FB22-4FC7-ACF9-90CB15636C1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC25475-FB22-4FC7-ACF9-90CB15636C1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C97F4F80-A676-4783-83AA-7033BF90804F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C97F4F80-A676-4783-83AA-7033BF90804F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C97F4F80-A676-4783-83AA-7033BF90804F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C97F4F80-A676-4783-83AA-7033BF90804F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{230088EE-0B53-480A-AC8B-65542458EF90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{230088EE-0B53-480A-AC8B-65542458EF90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{230088EE-0B53-480A-AC8B-65542458EF90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{230088EE-0B53-480A-AC8B-65542458EF90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54B4C9EC-8457-4B61-95D1-956EBFA6BFFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54B4C9EC-8457-4B61-95D1-956EBFA6BFFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54B4C9EC-8457-4B61-95D1-956EBFA6BFFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54B4C9EC-8457-4B61-95D1-956EBFA6BFFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7E9F7232-1645-4E92-B3B4-3002577359B7} = {863F3054-39B2-45DD-9EB2-903258A72CA2}
+		{A01DC5C3-4E00-49E7-93FF-6742DBB47659} = {2048AEF6-5127-4AC4-8BD7-B351F680D386}
+		{41DAE43A-89C3-4A1E-978E-CF1799D2883D} = {2048AEF6-5127-4AC4-8BD7-B351F680D386}
+		{8CF65E86-A01F-411F-8B79-1F91D2DEA107} = {41DAE43A-89C3-4A1E-978E-CF1799D2883D}
+		{CDC25475-FB22-4FC7-ACF9-90CB15636C1A} = {41DAE43A-89C3-4A1E-978E-CF1799D2883D}
+		{066B2820-5349-4930-B122-AD6C580F98B7} = {A01DC5C3-4E00-49E7-93FF-6742DBB47659}
+		{863F3054-39B2-45DD-9EB2-903258A72CA2} = {A01DC5C3-4E00-49E7-93FF-6742DBB47659}
+		{C97F4F80-A676-4783-83AA-7033BF90804F} = {066B2820-5349-4930-B122-AD6C580F98B7}
+		{230088EE-0B53-480A-AC8B-65542458EF90} = {41DAE43A-89C3-4A1E-978E-CF1799D2883D}
+		{54B4C9EC-8457-4B61-95D1-956EBFA6BFFD} = {066B2820-5349-4930-B122-AD6C580F98B7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {530A024F-378A-4DC3-A131-BEC0106D1CD2}
+	EndGlobalSection
+EndGlobal
