@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\QuickOrderPagamento.Adapters.Driven.RabbitMQ\QuickOrderPagamento.Adapters.Driven.RabbitMQ.csproj" />
     <ProjectReference Include="..\QuickOrderPagamento.Adapters.Driven.MongoDB\QuickOrderPagamento.Adapters.Driven.MongoDB.csproj" />
     <ProjectReference Include="..\QuickOrderPagamento.Core.Application\QuickOrderPagamento.Core.Application.csproj" />
     <ProjectReference Include="..\QuickOrderPagamento.Core.Domain\QuickOrderPagamento.Core.Domain.csproj" />

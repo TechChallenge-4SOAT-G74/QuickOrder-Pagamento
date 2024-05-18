@@ -5,10 +5,10 @@ namespace QuickOrderPagamento.Core.Domain.Enums
     public enum EStatusPagamento
     {
         [Description("Aguardando Pagamento")]
-        aguardando = 1,
+        Aguardando = 1,
 
         [Description("processando pagamento")]
-        processando = 2,
+        Processando = 2,
 
         [Description("Pagamento Aprovado")]
         Aprovado = 3,

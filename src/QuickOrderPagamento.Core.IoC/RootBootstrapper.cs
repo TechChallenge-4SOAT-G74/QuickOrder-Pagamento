@@ -6,8 +6,11 @@ using QuickOrderPagamento.Adapters.Driven.MongoDB.Repositories;
 using QuickOrderPagamento.Core.Application.UseCases;
 using QuickOrderPagamento.Core.Application.UseCases.Pagamento;
 using QuickOrderPagamento.Core.Application.UseCases.Pagamento.Interfaces;
+using QuickOrderPagamento.Core.Application.UseCases.Pedido.Interfaces;
+using QuickOrderPagamento.Core.Application.UseCases.Pedido;
 using QuickOrderPagamento.Core.Domain.Adapters;
 using QuickOrderPagamento.Core.Domain.Repositories;
+using QuickOrderPagamento.Infrastructure.Data;
 
 namespace QuickOrderPagamento.Core.IoC
 {
@@ -22,13 +25,15 @@ namespace QuickOrderPagamento.Core.IoC
             services.AddImplementations(ServiceLifetime.Scoped, typeof(IBaseUseCase), assemblyTypes);
 
             //Repositories MongoDB
-            services.AddSingleton<IMondoDBContext, MondoDBContext>();
+            services.AddSingleton<IMongoDBContext, MongoDBContext>();
             services.AddScoped<IPagamentoStatusRepository, PagamentoStatusRepository>();
 
-
             //UseCases
+            services.AddScoped<IPagamentoRepository, PagamentoRepository>();
+            services.AddScoped<IPagamentoAtualizarUseCase, PagamentoAtualizarUseCase>();
+            services.AddScoped<IPagamentoCriarUseCase, PagamentoCriarUseCase>();
+            services.AddScoped<IPagamentoObterUseCase, PagamentoObterUseCase>();
             services.AddScoped<IPagamentoUseCase, PagamentoUseCase>();
-
             services.AddScoped<IMercadoPagoApi, MercadoPagoApi>();
         }
     }

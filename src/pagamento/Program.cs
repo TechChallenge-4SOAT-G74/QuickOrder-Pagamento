@@ -3,10 +3,10 @@ using MongoDB.Driver;
 using QuickOrderPagamento.Adapters.Driving.Api.Configuration;
 using QuickOrderPagamento.Core.Domain.Entities;
 
-var builder = WebApplication.CreateBuilder(args);
+// Initializes a builder object 
+var builder = WebApplication.CreateBuilder(args); // part of ASP.NET core
 
-// Add services to the container.
-
+// Add services to the container
 builder.Services.Configure<DatabaseMongoDBSettings>(
     builder.Configuration.GetSection("DatabaseMongoDBSettings")
 );
@@ -15,6 +15,7 @@ builder.Services.Configure<MercadoPagoSettings>(
     builder.Configuration.GetSection("MercadoPagoSettings")
 );
 
+// MongoDB
 builder.Services.AddSingleton<IMongoDatabase>(options =>
 {
     var settings = builder.Configuration.GetSection("DatabaseMongoDBSettings").Get<DatabaseMongoDBSettings>();
@@ -22,10 +23,11 @@ builder.Services.AddSingleton<IMongoDatabase>(options =>
     return client.GetDatabase(settings.DatabaseName);
 });
 
+// Adds dependency injection configuration
 builder.Services.AddDependencyInjectionConfiguration();
 
+// Allows any origin, method, and header, but restricts origins to http://localhost:8090
 var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: myAllowSpecificOrigins,
@@ -38,17 +40,17 @@ builder.Services.AddCors(options =>
                       });
 });
 
-
+// Controllers configuration
 builder.Services.AddControllers()
     .AddJsonOptions(
         options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// ----------------------- Swagger/OpenAPI -----------------------
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "QuickOrder.Api", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "QuickOrderPagamento.Api", Version = "v1" });
 });
 
 var app = builder.Build();
@@ -59,6 +61,8 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 //}
+
+// ----------------------------------------------------------------
 
 app.UseReDoc(c =>
 {

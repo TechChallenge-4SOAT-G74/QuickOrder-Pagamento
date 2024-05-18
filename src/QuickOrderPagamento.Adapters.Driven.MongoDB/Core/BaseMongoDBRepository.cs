@@ -8,10 +8,10 @@ namespace QuickOrderPagamento.Adapters.Driven.MongoDB.Core
 {
     public abstract class BaseMongoDBRepository<TEntity> : IBaseMongoDBRepository<TEntity> where TEntity : EntityMongoBase
     {
-        protected readonly IMondoDBContext _mondoDBContext;
+        protected readonly IMongoDBContext _mondoDBContext;
         protected IMongoCollection<TEntity> _dbCollection;
 
-        protected BaseMongoDBRepository(IMondoDBContext mondoDBContext)
+        protected BaseMongoDBRepository(IMongoDBContext mondoDBContext)
         {
             _mondoDBContext = mondoDBContext;
             _dbCollection = _mondoDBContext.GetCollection<TEntity>(typeof(TEntity).Name);

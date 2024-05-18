@@ -2,7 +2,7 @@
 
 namespace QuickOrderPagamento.Adapters.Driven.MongoDB.Core
 {
-    public interface IMondoDBContext
+    public interface IMongoDBContext
     {
         IMongoCollection<T> GetCollection<T>(string name);
     }

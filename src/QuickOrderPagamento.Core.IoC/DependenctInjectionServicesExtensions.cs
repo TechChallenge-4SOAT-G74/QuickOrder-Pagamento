@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using QuickOrderPagamento.Adapters.Driven.RabbitMQ.Configuration;
 using System.Reflection;
 
 namespace QuickOrderPagamento.Core.IoC
@@ -38,6 +40,27 @@ namespace QuickOrderPagamento.Core.IoC
                     }
                 }
 
+            }
+        }
+
+        public static void AddRabbitMQ(this IServiceCollection services, IConfiguration configuration)
+        {
+            var rabbitMQSettings = new RabbitMQSettings();
+            configuration.GetSection("RabbitMQ").Bind(rabbitMQSettings);
+
+            services.AddSingleton(rabbitMQSettings);
+
+            var assemblyTypes = Assembly.GetExecutingAssembly().GetNoAbstractTypes();
+            var rabbitMQTypes = assemblyTypes.Where(t => t.Namespace == "QuickOrderPagamento.Adapters.Driven.RabbitMQ.Publishers" ||
+                                                         t.Namespace == "QuickOrderPagamento.Adapters.Driven.RabbitMQ.Subscribers");
+
+            foreach (var type in rabbitMQTypes)
+            {
+                var interfaces = type.GetInterfaces();
+                foreach (var iface in interfaces)
+                {
+                    services.AddTransient(iface, type);
+                }
             }
         }
     }

@@ -8,6 +8,6 @@ namespace QuickOrderPagamento.Core.Application.UseCases.Pagamento.Interfaces
     {
         Task VerificaPagamento(WebHookData whData);
         Task<bool> AtualizarStatusPagamento(string numeroPedido, int statusPagamento);
-        Task<ServiceResult<PaymentQrCodeResponse>> GerarQrCodePagamento(int idPedido);
+        Task<ServiceResult<PaymentQrCodeResponse>> GerarQrCodePagamento(int idPedido, double valorPedido);
     }
 }

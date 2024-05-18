@@ -1,0 +1,56 @@
+version: '3.4'
+
+services:
+  quickorderpagamento.adapters.driving.api:
+    image: ${DOCKER_REGISTRY-}quickorderpagamentoadaptersdrivingapi
+    volumes:
+      - 'api-volume:/var/www/html'
+    build:
+      context: .
+      dockerfile: pagamento/Dockerfile
+    ports:
+      - '8090:80'
+      - '5046:443'
+    restart: always 
+    depends_on:
+      - 'mongodb'
+      - 'rabbitmq' 
+    networks:
+      - quickorderdb-pagamento-network  
+   
+  mongodb:
+    image: mongo:latest
+    container_name: quickorderpagamentodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: mongo
+      MONGO_INITDB_DATABASE: quickorderdb-pagamento
+    ports:
+      - "27017:27017"
+    expose:
+      - "27017"
+    command: mongod --auth
+    volumes:
+      - 'quickorderdb-pagamento-mongodb-volume:/data/db'
+    networks:
+      - quickorderdb-pagamento-network
+
+  rabbitmq:
+     image: rabbitmq
+     ports: 
+       - 5672:5672
+     networks:
+       - quickorderdb-pagamento-network
+
+volumes:
+  quickorderdb-pagamento-mongodb-volume:
+  api-volume:
+
+networks:
+  quickorderdb-pagamento-network:
+    driver: bridge
+    
+
+ 
+       
