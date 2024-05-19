@@ -8,6 +8,7 @@ using QuickOrderPagamento.Core.Domain.Adapters;
 using QuickOrderPagamento.Core.Domain.Entities;
 using QuickOrderPagamento.Core.Domain.Enums;
 using ItemRequest = QuickOrderPagamento.Adapters.Driven.MercadoPago.Requests.Item;
+using QuickOrderPagamento.Infra.MQ;
 
 namespace QuickOrderPagamento.Core.Application.UseCases.Pagamento
 {
@@ -19,115 +20,22 @@ namespace QuickOrderPagamento.Core.Application.UseCases.Pagamento
         private readonly IMercadoPagoApi _mercadoPagoApi;
         private readonly IPagamentoAtualizarUseCase _pagamentoAtualizarUseCase;
         private readonly IPagamentoCriarUseCase _pagamentoCriarUseCase;
+        private readonly IRabbitMqPub<Domain.Entities.Pagamento> _rabbitMqPub;
 
         public PagamentoUseCase(IPagamentoStatusRepository statusRepository, 
-                                IPagamentoObterUseCase pagamentoObterUseCase, 
-                                IMercadoPagoApi mercadoPagoApi, 
+                                IPagamentoObterUseCase pagamentoObterUseCase,
+                                IMercadoPagoApi mercadoPagoApi,
                                 IPagamentoCriarUseCase pagamentoCriarUseCase,
-                                IPagamentoAtualizarUseCase pagamentoAtualizarUseCase)
+                                IPagamentoAtualizarUseCase pagamentoAtualizarUseCase,
+                                IRabbitMqPub<Domain.Entities.Pagamento> rabbitMqPub)
         {
             _statusRepository = statusRepository;
             _pagamentoObterUseCase = pagamentoObterUseCase;
             _mercadoPagoApi = mercadoPagoApi;
             _pagamentoCriarUseCase = pagamentoCriarUseCase;
             _pagamentoAtualizarUseCase = pagamentoAtualizarUseCase;
-        }
-
-        public async Task VerificaPagamento(WebHookData whData)
-        {
-            
-            var retorno = await _mercadoPagoApi.ObterPagamento(whData.Data.Id);
-
-            var status = 0;
-            switch (retorno.Status)
-            {
-                case "approved":
-                    status = (int)EStatusPagamento.Aprovado;
-                    break;
-                /*case "pending":
-                    status = (int)EStatusPagamento.aguardando;
-                    break;
-                case "authorized":
-                    status = (int)EStatusPagamento.processando;
-                    break;
-                case "in_process":
-                    status = (int)EStatusPagamento.processando;
-                    break;
-                case "in_mediation":
-                    status = (int)EStatusPagamento.processando;
-                    break;*/
-                case "rejected":
-                    status = (int)EStatusPagamento.Negado;
-                    break;
-                case "cancelled":
-                    status = (int)EStatusPagamento.Negado;
-                    break;
-                case "refunded":
-                    status = (int)EStatusPagamento.Negado;
-                    break;
-                case "charged_back":
-                    status = (int)EStatusPagamento.Negado;
-                    break;
-            }
-
-            await AtualizarStatusPagamento(whData.Data.Id, status);
-        }
-
-        public async Task<bool> AtualizarStatusPagamento(string numeroPedido, int statusPagamento)
-        {
-            /*
-            var pedido = await _statusRepository.GetValue("NumeroPedido", numeroPedido);
-
-            if (pedido != null)
-            {
-                var pagamentoStatus = new PagamentoStatus
-                {
-                    Id = pedido.Id,
-                    NumeroPedido = pedido.NumeroPedido,
-                    clienteId = pedido.clienteId,
-                    StatusPagamento = EStatusPagamentoExtensions.ToDescriptionString((EStatusPagamento)statusPagamento),
-                    DataAtualizacao = DateTime.Now
-                };
-                _statusRepository.Update(pagamentoStatus);
-
-                if ((EStatusPagamento)statusPagamento == EStatusPagamento.Aprovado)
-                {
-                    var pedidoStatus = new PedidoStatus((int)Convert.ToUInt32(pedido.NumeroPedido), EStatusPedidoExtensions.ToDescriptionString(EStatusPedido.Recebido), DateTime.Now);
-                    _pedidoStatusRepository.Update(pedidoStatus);
-                }
-
-            }
-            */
-            return true;
-           
-        }
-
-        // TODO: Salvar no banco de dados o status do pagamento e atualizar o status do pedido no topico de pedidos
-        private async Task EnviarPedidoPagamento(SacolaDto sacolaDto, PaymentQrCodeResponse paymentQrCode)
-        {
-            try
-            {
-                var pagamentoStatus = new PagamentoStatus
-                {
-                    //ClienteId = Convert.ToInt32(sacolaDto.NumeroCliente),
-                    NumeroPedido = Convert.ToInt32(sacolaDto.NumeroPedido),
-                    DataAtualizacao = DateTime.Now,
-                    Valor = sacolaDto.Valor,
-                    StatusPagamento = EStatusPagamentoExtensions.ToDescriptionString(EStatusPagamento.Aguardando),
-                    ProvedorPagamento = "Mercado Pago",
-                    ChavePagamento = paymentQrCode.in_store_order_id,
-                    QrCodePayment = paymentQrCode.qr_data
-                };
-
-                await _statusRepository.Create(pagamentoStatus);
-
-            }
-            catch (Exception ex)
-            {
-                // Log the error or handle it as needed
-                throw new ApplicationException("An error occurred while processing the payment.", ex);
-            }
-        }
+            _rabbitMqPub = rabbitMqPub;
+         }
 
         public async Task<ServiceResult<PaymentQrCodeResponse>> GerarQrCodePagamento(int idPedido, double valorPedido)
         {
@@ -197,7 +105,111 @@ namespace QuickOrderPagamento.Core.Application.UseCases.Pagamento
                 result.AddError(400, ex.Message);
             }
 
+            /* TODO: APAGAR DEPOIS - só para testes -------------------------------- */
+            //var webHookData = new WebHookData
+            //{
+            //    Data = new Data
+            //    {
+            //        Id = idPedido.ToString()
+            //    }
+            //};
+            //await VerificaPagamento(webHookData);
+            /* só para testes ------------------------------------------------------ */
+
             return result;
+        }
+
+        public async Task VerificaPagamento(WebHookData whData)
+        {
+            
+            var retorno = await _mercadoPagoApi.ObterPagamento(whData.Data.Id);
+
+            /* TODO: APAGAR DEPOIS - só para testes -------------------------------- */
+            //var retorno = new Payment
+            //{
+            //    Status = "approved"
+            //};
+            /* só para testes ------------------------------------------------------ */
+
+            var status = 0;
+            switch (retorno.Status)
+            {
+                case "approved":
+                    status = (int)EStatusPagamento.Aprovado;
+                    break;
+                case "pending":
+                    status = (int)EStatusPagamento.Aguardando;
+                    break;
+                case "authorized":
+                    status = (int)EStatusPagamento.Processando;
+                    break;
+                case "in_process":
+                    status = (int)EStatusPagamento.Processando;
+                    break;
+                case "in_mediation":
+                    status = (int)EStatusPagamento.Processando;
+                    break;
+                case "rejected":
+                    status = (int)EStatusPagamento.Negado;
+                    break;
+                case "cancelled":
+                    status = (int)EStatusPagamento.Negado;
+                    break;
+                case "refunded":
+                    status = (int)EStatusPagamento.Negado;
+                    break;
+                case "charged_back":
+                    status = (int)EStatusPagamento.Negado;
+                    break;
+            }
+
+            await AtualizarStatusPagamento(whData.Data.Id, status);
+        }
+
+        public async Task<bool> AtualizarStatusPagamento(string numeroPedido, int statusPagamento)
+        {
+            var pagamento = await _pagamentoObterUseCase.ConsultarPagamento(Int32.Parse(numeroPedido));
+                
+            if (pagamento.Data != null)
+            {
+                EStatusPagamento statusEnum = (EStatusPagamento)statusPagamento;
+                pagamento.Data.Status = statusEnum.ToDescriptionString();
+                await _pagamentoAtualizarUseCase.AtualizarPagamento(pagamento.Data.Id.ToString(), pagamento);
+
+                if ((EStatusPagamento)statusPagamento == EStatusPagamento.Aprovado)
+                {
+                    Console.WriteLine("Pagamento aprovado");
+                    _rabbitMqPub.Publicar(pagamento.Data, "Pagamento", "Pagamento_Confirmado");
+                }
+            }
+
+            return true;
+        }
+
+        private async Task EnviarPedidoPagamento(SacolaDto sacolaDto, PaymentQrCodeResponse paymentQrCode)
+        {
+            try
+            {
+                var pagamentoStatus = new PagamentoStatus
+                {
+                    //ClienteId = Convert.ToInt32(sacolaDto.NumeroCliente),
+                    NumeroPedido = Convert.ToInt32(sacolaDto.NumeroPedido),
+                    DataAtualizacao = DateTime.Now,
+                    Valor = sacolaDto.Valor,
+                    StatusPagamento = EStatusPagamentoExtensions.ToDescriptionString(EStatusPagamento.Aguardando),
+                    ProvedorPagamento = "Mercado Pago",
+                    ChavePagamento = paymentQrCode.in_store_order_id,
+                    QrCodePayment = paymentQrCode.qr_data
+                };
+
+                await _statusRepository.Create(pagamentoStatus);
+
+            }
+            catch (Exception ex)
+            {
+                // Log the error or handle it as needed
+                throw new ApplicationException("An error occurred while processing the payment.", ex);
+            }
         }
     }
 }

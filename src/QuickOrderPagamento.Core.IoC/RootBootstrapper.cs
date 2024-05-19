@@ -11,6 +11,7 @@ using QuickOrderPagamento.Core.Application.UseCases.Pedido;
 using QuickOrderPagamento.Core.Domain.Adapters;
 using QuickOrderPagamento.Core.Domain.Repositories;
 using QuickOrderPagamento.Infrastructure.Data;
+using QuickOrderPagamento.Infra.MQ;
 
 namespace QuickOrderPagamento.Core.IoC
 {
@@ -19,6 +20,9 @@ namespace QuickOrderPagamento.Core.IoC
         public static void BootstrapperRegisterServices(this IServiceCollection services)
         {
             var assemblyTypes = typeof(RootBootstrapper).Assembly.GetNoAbstractTypes();
+
+            services.AddSingleton(typeof(IRabbitMqPub<>), typeof(RabbitMqPub<>));
+            services.AddSingleton<IProcessaEvento, ProcessaEvento>();
 
             services.AddImplementations(ServiceLifetime.Scoped, typeof(IBaseRepository), assemblyTypes);
 

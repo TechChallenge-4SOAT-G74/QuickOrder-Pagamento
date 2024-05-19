@@ -21,18 +21,6 @@ namespace QuickOrderPagamento.Core.Application.UseCases.Pagamento
                 throw new ArgumentNullException(nameof(pagamento), "Pagamento não pode ser nulo.");
             }
 
-            // Converta PagamentoDto para a entidade Pagamento
-            /*
-            var pagamentoEntity = new Domain.Entities.Pagamento
-            {
-                Id = ObjectId.Parse(id),
-                NumeroPedido = pagamentoDto.Data.NumeroPedido,
-                Valor = pagamentoDto.Data.Valor,
-                Status = pagamentoDto.Data.StatusPagamento,
-                Data = pagamentoDto.Data.DataPagamento
-            };*/
-
-            // Atualize o pagamento no repositório
             await _pagamentoRepository.Update(pagamento.Data);
         }
     }

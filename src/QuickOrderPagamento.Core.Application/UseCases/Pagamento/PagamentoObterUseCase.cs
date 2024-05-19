@@ -26,15 +26,6 @@ namespace QuickOrderPagamento.Core.Application.UseCases.Pedido
                 return result;
             }
 
-            /*
-            var pagamentoDto = new PagamentoDto
-            {
-                NumeroPedido = pagamento.NumeroPedido,
-                StatusPagamento = pagamento.Status,
-                Valor = pagamento.Valor,
-                DataPagamento = pagamento.Data
-            };*/
-
             result.Data = pagamento;
             return result;
         }

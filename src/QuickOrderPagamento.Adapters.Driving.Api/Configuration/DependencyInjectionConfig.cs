@@ -1,7 +1,4 @@
-﻿
-using QuickOrderPagamento.Core.IoC;
-
-namespace QuickOrderPagamento.Adapters.Driving.Api.Configuration
+﻿namespace QuickOrderPagamento.Adapters.Driving.Api.Configuration
 {
     public static class DependencyInjectionConfig
     {

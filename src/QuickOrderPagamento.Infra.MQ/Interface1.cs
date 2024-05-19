@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickOrderPagamento.Adapters.Driven.RabbitMQ.Subscribers
+namespace QuickOrderPagamento.Infra.MQ
 {
-    internal class ExampleSubscriber
+    internal interface Interface1
     {
     }
 }

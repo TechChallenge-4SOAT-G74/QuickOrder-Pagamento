@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using QuickOrderPagamento.Adapters.Driven.RabbitMQ.Configuration;
 using System.Reflection;
 
 namespace QuickOrderPagamento.Core.IoC
@@ -43,7 +42,7 @@ namespace QuickOrderPagamento.Core.IoC
             }
         }
 
-        public static void AddRabbitMQ(this IServiceCollection services, IConfiguration configuration)
+        /*public static void AddRabbitMQ(this IServiceCollection services, IConfiguration configuration)
         {
             var rabbitMQSettings = new RabbitMQSettings();
             configuration.GetSection("RabbitMQ").Bind(rabbitMQSettings);
@@ -62,7 +61,7 @@ namespace QuickOrderPagamento.Core.IoC
                     services.AddTransient(iface, type);
                 }
             }
-        }
+        }*/
     }
 
     public static class AssemblyExtentions

@@ -2,6 +2,7 @@ using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
 using QuickOrderPagamento.Adapters.Driving.Api.Configuration;
 using QuickOrderPagamento.Core.Domain.Entities;
+using QuickOrderPagamento.Infra.MQ;
 
 // Initializes a builder object 
 var builder = WebApplication.CreateBuilder(args); // part of ASP.NET core
@@ -13,6 +14,10 @@ builder.Services.Configure<DatabaseMongoDBSettings>(
 
 builder.Services.Configure<MercadoPagoSettings>(
     builder.Configuration.GetSection("MercadoPagoSettings")
+);
+
+builder.Services.Configure<RabbitMqSettings>(
+    builder.Configuration.GetSection("RabbitMqSettings")
 );
 
 // MongoDB
