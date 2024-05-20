@@ -1,17 +1,18 @@
-using QuickOrderPagamento.Core.Domain.Entities;
+﻿using QuickOrderPagamento.Core.Domain.Entities;
+using Xunit;
 
-namespace QuickOrderPagamento.Core.Domain.Tests.Entities
+namespace QuickOrderPagamento.Tests.Domain.Tests
 {
-    public class PagamentoTest
+    public class PagamentoTests
     {
         [Fact]
-        public void CriarPagamento_ComValoresValidos_DeveCriarObjetoCorretamente()
+        public void Pagamento_DeveInicializarCorretamente()
         {
             // Arrange
-            int numeroPedido = 12345;
-            double valor = 100.50;
-            DateTime data = DateTime.Now;
-            string status = "Novo";
+            var numeroPedido = 1;
+            var valor = 150.00;
+            var data = DateTime.Now;
+            var status = "Novo";
 
             // Act
             var pagamento = new Pagamento

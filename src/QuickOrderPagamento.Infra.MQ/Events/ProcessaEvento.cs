@@ -21,17 +21,6 @@ namespace QuickOrderPagamento.Infra.MQ
 
             using var scope = _scopeFactory.CreateScope();
 
-            //var itemRepository = scope.ServiceProvider.GetRequiredService<IPedidoGateway>();
-
-            //var restauranteRead = JsonSerializer.Deserialize<Pedido>(mensagem);
-
-            //var restaurante = _mapper.Map<Pedido>(restauranteReadDto);
-
-            //if (!itemRepository.ExisteRestauranteExterno(restaurante.Id))
-            //{
-            //    itemRepository.CreateRestaurante(restaurante);
-            //    itemRepository.SaveChanges();
-            //}
         }
     }
 }
