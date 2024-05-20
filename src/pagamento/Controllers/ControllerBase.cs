@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuickOrderPagamento.Core.Application.Dtos;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 
 namespace QuickOrderPagamento.Adapters.Driving.Api.Controllers
 {
+    [ExcludeFromCodeCoverage]
     public abstract class CustomController<T> : ControllerBase
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     {

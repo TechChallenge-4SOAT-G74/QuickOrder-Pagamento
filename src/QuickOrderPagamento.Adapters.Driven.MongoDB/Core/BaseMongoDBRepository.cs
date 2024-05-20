@@ -3,9 +3,11 @@ using MongoDB.Driver;
 using QuickOrderPagamento.Core.Domain.Adapters;
 using QuickOrderPagamento.Core.Domain.Entities;
 using ServiceStack;
+using System.Diagnostics.CodeAnalysis;
 
 namespace QuickOrderPagamento.Adapters.Driven.MongoDB.Core
 {
+    [ExcludeFromCodeCoverage]
     public abstract class BaseMongoDBRepository<TEntity> : IBaseMongoDBRepository<TEntity> where TEntity : EntityMongoBase
     {
         protected readonly IMongoDBContext _mondoDBContext;

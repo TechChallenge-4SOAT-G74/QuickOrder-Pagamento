@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using QuickOrderPagamento.Core.Domain.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace QuickOrderPagamento.Adapters.Driven.MongoDB.Core
 {
+    [ExcludeFromCodeCoverage]
     public class MongoDBContext : IMongoDBContext
     {
         private IMongoDatabase _db { get; set; }

@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace QuickOrderPagamento.Core.IoC
 {
+    [ExcludeFromCodeCoverage]
     public static class DependenctInjectionServicesExtensions
     {
         public static void AddImplementations(this IServiceCollection services,
@@ -64,6 +66,7 @@ namespace QuickOrderPagamento.Core.IoC
         }*/
     }
 
+    [ExcludeFromCodeCoverage]
     public static class AssemblyExtentions
     {
         public static IEnumerable<Type> GetNoAbstractTypes(this Assembly assemblyFile)

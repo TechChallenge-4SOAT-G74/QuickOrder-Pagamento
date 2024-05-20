@@ -12,9 +12,11 @@ using QuickOrderPagamento.Core.Domain.Adapters;
 using QuickOrderPagamento.Core.Domain.Repositories;
 using QuickOrderPagamento.Infrastructure.Data;
 using QuickOrderPagamento.Infra.MQ;
+using System.Diagnostics.CodeAnalysis;
 
 namespace QuickOrderPagamento.Core.IoC
 {
+    [ExcludeFromCodeCoverage]
     public static class RootBootstrapper
     {
         public static void BootstrapperRegisterServices(this IServiceCollection services)

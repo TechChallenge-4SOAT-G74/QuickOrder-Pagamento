@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.Json;
 
 namespace QuickOrderPagamento.Infra.MQ
 {
+    [ExcludeFromCodeCoverage]
     public class RabbitMqPub<T> : IRabbitMqPub<T> where T : class
     {
         

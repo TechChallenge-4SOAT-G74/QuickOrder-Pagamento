@@ -1,8 +1,10 @@
 ﻿using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
+using System.Diagnostics.CodeAnalysis;
 
 namespace QuickOrderPagamento.Core.Application.Dtos
 {
+    [ExcludeFromCodeCoverage]
     //OWASP: https://cheatsheetseries.owasp.org/cheatsheets/AJAX_Security_Cheat_Sheet.html
     public class ServiceResult<T> : ServiceResult
     {
@@ -23,6 +25,7 @@ namespace QuickOrderPagamento.Core.Application.Dtos
         }
     }
 
+    [ExcludeFromCodeCoverage]
     public class ServiceResult
     {
         public int CodeId { get; set; } = StatusCodes.Status200OK;

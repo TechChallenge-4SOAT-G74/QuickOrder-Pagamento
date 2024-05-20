@@ -1,5 +1,8 @@
-﻿namespace QuickOrderPagamento.Adapters.Driven.MercadoPago.Responses
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace QuickOrderPagamento.Adapters.Driven.MercadoPago.Responses
 {
+    [ExcludeFromCodeCoverage]
     public class Payment
     {
         public int Id { get; set; }

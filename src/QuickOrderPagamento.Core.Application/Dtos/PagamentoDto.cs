@@ -1,5 +1,8 @@
-﻿namespace QuickOrderPagamento.Core.Application.Dtos
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace QuickOrderPagamento.Core.Application.Dtos
 {
+    [ExcludeFromCodeCoverage]
     public class PagamentoDto
     {
         public string Id { get; set; }

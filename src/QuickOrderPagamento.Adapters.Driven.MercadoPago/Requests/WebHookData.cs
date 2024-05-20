@@ -1,5 +1,8 @@
-﻿namespace QuickOrderPagamento.Adapters.Driven.MercadoPago.Requests
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace QuickOrderPagamento.Adapters.Driven.MercadoPago.Requests
 {
+    [ExcludeFromCodeCoverage]
     public class WebHookData
     {
         public string Action { get; set; }
@@ -14,6 +17,7 @@
 
     }
 
+    [ExcludeFromCodeCoverage]
     public class Data
     {
         public string Id { get; set; }

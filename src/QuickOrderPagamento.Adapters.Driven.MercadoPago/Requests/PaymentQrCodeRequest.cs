@@ -1,5 +1,8 @@
-﻿namespace QuickOrderPagamento.Adapters.Driven.MercadoPago.Requests
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace QuickOrderPagamento.Adapters.Driven.MercadoPago.Requests
 {
+    [ExcludeFromCodeCoverage]
     public class PaymentQrCodeRequest
     {
         public PaymentQrCodeRequest()
@@ -15,11 +18,14 @@
         public string title { get; set; }
         public int total_amount { get; set; }
     }
+
+    [ExcludeFromCodeCoverage]
     public class CashOut
     {
         public int amount { get; set; }
     }
 
+    [ExcludeFromCodeCoverage]
     public class Item
     {
         public string sku_number { get; set; }
@@ -32,6 +38,7 @@
         public int total_amount { get; set; }
     }
 
+    [ExcludeFromCodeCoverage]
     public class Sponsor
     {
         public int id { get; set; }

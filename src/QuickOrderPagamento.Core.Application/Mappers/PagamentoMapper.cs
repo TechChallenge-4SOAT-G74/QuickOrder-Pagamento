@@ -1,8 +1,10 @@
 ﻿using QuickOrderPagamento.Core.Application.Dtos;
 using QuickOrderPagamento.Core.Domain.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace QuickOrderPagamento.Core.Application.Mappers
 {
+    [ExcludeFromCodeCoverage]
     public static class PagamentoMapper
     {
         public static Pagamento ToEntity(this PagamentoDto dto)

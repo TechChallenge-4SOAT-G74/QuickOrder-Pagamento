@@ -1,5 +1,8 @@
-﻿namespace QuickOrderPagamento.Core.Domain.Entities
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace QuickOrderPagamento.Core.Domain.Entities
 {
+    [ExcludeFromCodeCoverage]
     public class MercadoPagoSettings
     {
         public string AccessToken { get; set; }

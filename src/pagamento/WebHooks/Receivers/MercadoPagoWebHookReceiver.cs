@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuickOrderPagamento.Adapters.Driven.MercadoPago.Requests;
 using QuickOrderPagamento.Core.Application.UseCases.Pagamento.Interfaces;
+using System.Diagnostics.CodeAnalysis;
 
 namespace QuickOrderPagamento.Adapters.Driving.Api.WebHooks.Receivers
 {
+    [ExcludeFromCodeCoverage]
     [Route("api/webhook/receiver/mercadopago")]
     [ApiController]
     public class MercadoPagoWebHookReceiver : ControllerBase

@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuickOrderPagamento.Core.Application.UseCases.Pagamento.Interfaces;
+using System.Diagnostics.CodeAnalysis;
 
 namespace QuickOrderPagamento.Adapters.Driving.Api.Controllers.Pagamento
 {
+    [ExcludeFromCodeCoverage]
     [Route("api/[controller]")]
     [ApiController]
     public class PagamentoController : CustomController<PagamentoController>

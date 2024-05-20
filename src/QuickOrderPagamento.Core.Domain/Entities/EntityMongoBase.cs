@@ -1,8 +1,10 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System.Diagnostics.CodeAnalysis;
 
 namespace QuickOrderPagamento.Core.Domain.Entities
 {
+    [ExcludeFromCodeCoverage]
     public class EntityMongoBase
     {
         public EntityMongoBase()

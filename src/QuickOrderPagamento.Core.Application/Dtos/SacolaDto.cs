@@ -1,5 +1,8 @@
-﻿namespace QuickOrderPagamento.Core.Application.UseCases.Pagamento
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace QuickOrderPagamento.Core.Application.UseCases.Pagamento
 {
+    [ExcludeFromCodeCoverage]
     internal class SacolaDto
     {
         public object NumeroCliente { get; set; }

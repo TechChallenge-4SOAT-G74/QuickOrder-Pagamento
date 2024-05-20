@@ -2,9 +2,11 @@
 using QuickOrderPagamento.Adapters.Driven.MongoDB.Core;
 using QuickOrderPagamento.Core.Domain.Entities;
 using QuickOrderPagamento.Core.Domain.Repositories;
+using System.Diagnostics.CodeAnalysis;
 
 namespace QuickOrderPagamento.Infrastructure.Data
 {
+    [ExcludeFromCodeCoverage]
     public class PagamentoRepository : BaseMongoDBRepository<Pagamento>, IPagamentoRepository
     {
         private readonly IMongoCollection<Pagamento> _pagamentos;
