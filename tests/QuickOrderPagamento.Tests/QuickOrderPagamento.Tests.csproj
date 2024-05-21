@@ -29,4 +29,8 @@
     <ProjectReference Include="..\..\src\QuickOrderPagamento.Core.Domain\QuickOrderPagamento.Core.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Infra\" />
+  </ItemGroup>
+
 </Project>

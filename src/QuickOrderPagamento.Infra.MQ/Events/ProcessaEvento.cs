@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using QuickOrderPagamento.Infra.MQ;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
 namespace QuickOrderPagamento.Infra.MQ
 {
+    [ExcludeFromCodeCoverage]
     public class ProcessaEvento : IProcessaEvento
     {
         //private readonly IMapper _mapper;
