@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F79E8321
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickOrderPagamento.Infra.MQ", "QuickOrderPagamento.Infra.MQ\QuickOrderPagamento.Infra.MQ.csproj", "{F9959EAA-3D89-44AC-9665-5B7BF6F34075}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickOrderPagamento.Tests", "..\tests\QuickOrderPagamento.Tests\QuickOrderPagamento.Tests.csproj", "{833F9601-259C-48E6-9862-264F923546D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickOrderPagamento.Tests", "..\tests\QuickOrderPagamento.Tests\QuickOrderPagamento.Tests.csproj", "{833F9601-259C-48E6-9862-264F923546D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

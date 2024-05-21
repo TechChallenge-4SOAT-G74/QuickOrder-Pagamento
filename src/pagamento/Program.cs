@@ -23,7 +23,8 @@ builder.Services.Configure<RabbitMqSettings>(
 // MongoDB
 builder.Services.AddSingleton<IMongoDatabase>(options =>
 {
-    var settings = builder.Configuration.GetSection("DatabaseMongoDBSettings").Get<DatabaseMongoDBSettings>();
+    DatabaseMongoDBSettings settings = new DatabaseMongoDBSettings();
+    settings = builder.Configuration.GetSection("DatabaseMongoDBSettings").Get<DatabaseMongoDBSettings>();
     var client = new MongoClient(settings.ConnectionString);
     return client.GetDatabase(settings.DatabaseName);
 });
@@ -71,7 +72,7 @@ app.UseSwaggerUI();
 
 app.UseReDoc(c =>
 {
-    c.DocumentTitle = "QuickOrder API Documentation";
+    c.DocumentTitle = "QuickOrder Pagamento API Documentation";
     c.SpecUrl = "/swagger/v1/swagger.json";
 });
 
