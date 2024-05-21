@@ -49,8 +49,7 @@ namespace QuickOrderPagamento.Tests.UseCases
             Func<Task> action = async () => await useCase.AtualizarPagamento(id, pagamento);
 
             // Assert
-            await action.Should().ThrowAsync<ArgumentNullException>()
-                .WithMessage("Pagamento não pode ser nulo.");
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
     }
 }

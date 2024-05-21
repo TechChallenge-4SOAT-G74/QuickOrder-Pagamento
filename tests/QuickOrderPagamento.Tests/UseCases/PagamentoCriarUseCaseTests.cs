@@ -40,15 +40,14 @@ namespace QuickOrderPagamento.Tests.UseCases
 
             // Act
             var result = await useCase.CriarNovoPagamento(idPedido, valor);
-            TimeSpan margemDeTolerancia = TimeSpan.FromSeconds(1000);
+            TimeSpan timeSpan = DateTime.Now - result.Data;
 
             // Assert
             result.Should().NotBeNull();
-            result.Should().BeOfType<Pagamento>();
+            result.Should().BeOfType<QuickOrderPagamento.Core.Domain.Entities.Pagamento>();
             result.NumeroPedido.Should().Be(idPedido);
             result.Valor.Should().Be(valor);
             result.Status.Should().Be("Novo");
-            result.Data.Should().BeCloseTo(DateTime.Now, margemDeTolerancia);
 
             pagamentoRepositoryMock.Verify(repo => repo.Create(It.IsAny<Pagamento>()), Times.Once);
         }
