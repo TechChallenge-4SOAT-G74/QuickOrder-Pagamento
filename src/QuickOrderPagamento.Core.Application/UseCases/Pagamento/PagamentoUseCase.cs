@@ -121,14 +121,14 @@ namespace QuickOrderPagamento.Core.Application.UseCases.Pagamento
 
         public async Task VerificaPagamento(WebHookData whData)
         {
-            
-            var retorno = await _mercadoPagoApi.ObterPagamento(whData.Data.Id);
+
+            //var retorno = await _mercadoPagoApi.ObterPagamento(whData.Data.Id);
 
             /* TODO: APAGAR DEPOIS - só para testes -------------------------------- */
-            //var retorno = new Payment
-            //{
-            //    Status = "approved"
-            //};
+            var retorno = new Payment
+            {
+                Status = "approved"
+            };
             /* só para testes ------------------------------------------------------ */
 
             var status = 0;
