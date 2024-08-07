@@ -38,7 +38,7 @@ namespace QuickOrderPagamento.Infra.MQ
                      autoDelete: false,
                      arguments: null);
 
-            _channel.ExchangeDeclare(exchange: _exchange, type: ExchangeType.Direct);
+            _channel.ExchangeDeclare(exchange: _exchange, type: ExchangeType.Fanout);
 
             _channel.QueueBind(queue: queue,
              exchange: _exchange,
