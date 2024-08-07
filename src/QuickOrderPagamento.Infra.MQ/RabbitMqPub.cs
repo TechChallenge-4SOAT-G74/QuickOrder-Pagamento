@@ -11,6 +11,7 @@ namespace QuickOrderPagamento.Infra.MQ
     {
         
         private readonly IModel _channel;
+        private readonly string _exchange = "QuickOrder";
 
         public RabbitMqPub(IOptions<RabbitMqSettings> configuration)
         {
@@ -37,16 +38,16 @@ namespace QuickOrderPagamento.Infra.MQ
                      autoDelete: false,
                      arguments: null);
 
-            _channel.ExchangeDeclare(exchange: "pagamento", type: ExchangeType.Direct);
+            _channel.ExchangeDeclare(exchange: _exchange, type: ExchangeType.Direct);
 
             _channel.QueueBind(queue: queue,
-             exchange: "pagamento",
+             exchange: _exchange,
              routingKey: routingKey);
 
             string mensagem = JsonSerializer.Serialize(obj);
             var body = Encoding.UTF8.GetBytes(mensagem);
 
-            _channel.BasicPublish(exchange: "pagamento",
+            _channel.BasicPublish(exchange: _exchange,
                 routingKey: routingKey,
                 basicProperties: null,
                 body: body

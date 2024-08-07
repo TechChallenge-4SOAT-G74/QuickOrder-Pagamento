@@ -14,6 +14,12 @@ gabrieladslopes@gmail.com
 fsouza.thadeu@gmail.com
 
 <br />
+<br />
+
+## Microserviço - Pagamento
+Microserviço de pagamento é usuado como para gerar link de pagamento por QRCode do Mercado Pago. 
+Através de WebHook do Mercado Pago o microserviço recebe os retornos com o status de pagamento e envia para 
+o microserviço de pedido de forma assíncrona.
 
 <br />
 
@@ -28,6 +34,8 @@ Antes de executar este projeto, os seguintes itens deverão estar instalados no 
 <br />
 
 Passo a passo:
+
+* Obter os scripts de instalação do kubernetes no repositório https://github.com/TechChallenge-4SOAT-G74/QuickOrder-Infra-MicroServices-Kubernetes
 
 * Abrir alguma interface de linha de comando como, por exemplo, o **PowerShell** e digitar o comando `kubectl config get-contexts`. O resultado deverá ser conforme abaixo, com o contexto do **docker-desktop** selecionado:
   
@@ -83,23 +91,6 @@ Passo a passo:
 
 ![image](https://github.com/TechChallenge-4SOAT-G74/QuickOrder-Produto/assets/19378661/9966598c-45a5-45a7-8c4e-2c576c8a327e)
 
-
-<br />
-
-* Aplicar os **scripts yml** dos **Services** através do comando `kubectl apply -f "https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml"`:
-
-<br />
-
-![image](https://github.com/TechChallenge-4SOAT-G74/QuickOrder-Produto/assets/19378661/948fb896-d6b6-45ac-838d-6fe9e239bca0)
-
-
-<br />
-
-* Aplicar os **scripts yml** dos **Services** através do comando `kubectl apply -f .\04-RabbitMQ\`:
-
-<br />
-
-![image](https://github.com/TechChallenge-4SOAT-G74/QuickOrder-Produto/assets/19378661/fe46e4e2-fb3d-4117-bcc4-80a23904f181)
 
 
 <br />
