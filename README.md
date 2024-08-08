@@ -107,3 +107,6 @@ Passo a passo:
 * Abrir o browser e digitar o seguinte endereço **http://localhost:30200/swagger/**. O swagger da Api deverá ser exibido, indicando que a subida da aplicação ocorreu com sucesso.
 
 <br />
+
+![image](https://github.com/user-attachments/assets/73d924f4-71fc-41cf-aabc-88a8e969c109)
+
