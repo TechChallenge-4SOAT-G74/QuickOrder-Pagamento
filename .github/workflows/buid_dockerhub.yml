@@ -45,7 +45,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./src
-          file: src/QuickOrderPagamento.Adapters.Driving.Api/Dockerfile
+          file: src/pagamento/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/quickorder-pagamento:latest
           secrets: |
